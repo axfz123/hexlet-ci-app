@@ -3,9 +3,10 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: node:16-bullseye
     steps: 
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      #- uses: actions/checkout@v2
+      #- uses: actions/setup-node@v2
       - name: Setup
         run: make setup
       - name: Test
