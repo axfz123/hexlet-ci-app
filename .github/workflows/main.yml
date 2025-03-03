@@ -4,6 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps: 
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
       - name: Setup
         run: make setup
       - name: Test
