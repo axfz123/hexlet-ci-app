@@ -1,16 +1,30 @@
-name: first workflow
-on: push
+name: Node CI
+
+on:
+  - push
+  - pull_request
+
+env:
+  CI: true
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    steps: 
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
       - uses: actions/checkout@v4
-      - name: Setup
-        run: make setup
-      - name: Test
-        run: make test
-      - name: Lint
-        run: make lint
-      - name: Print Hello from Hexlet
-        uses: hexlet-components/hello-from-hexlet-action@release
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: make install
+      - run: make lint
+      - run: make test
+      - uses: hexlet-components/hello-from-hexlet-action@release
 
