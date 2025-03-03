@@ -4,7 +4,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps: 
-      - run: make setup
-      - run: make test
-      - run: make lint
+      - name: Setup
+        run: make setup
+      - name: Test
+        run: make test
+      - name: Lint
+        run: make lint
 
